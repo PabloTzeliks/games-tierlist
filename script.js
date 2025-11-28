@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
       event.dataTransfer.setData("text/plain", event.target.id);
 
       setTimeout(() => {
-        item.classList.add("dragging");
-      });
+        item.classList.add("hide");
+      }, 0);
     });
 
     item.addEventListener("dragend", (event) => {
-      item.classList.remove("dragging");
+      item.classList.remove("hide");
     });
   });
 
