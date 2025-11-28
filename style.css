@@ -149,3 +149,39 @@ p {
 .hide {
     display: none;
 }
+
+/* Container para centralizar o botão */
+.controls {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.btn-reset {
+    background-color: #ff4757; /* Vermelho moderno */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50px; /* Bordas bem redondas */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra suave */
+    transition: all 0.2s ease; /* Animação suave */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre o ícone e o texto */
+}
+
+/* Quando passa o mouse */
+.btn-reset:hover {
+    background-color: #e84118; /* Vermelho um pouco mais escuro */
+    transform: translateY(-2px); /* O botão sobe um pouquinho */
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+}
+
+/* Quando clica */
+.btn-reset:active {
+    transform: translateY(0); /* Volta para o lugar */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

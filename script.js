@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const draggableItems = document.querySelectorAll(".game-image");
   const dropzones = document.querySelectorAll(".drop-zone, .image-pool");
 
+  loadTierList();
+
   draggableItems.forEach((item) => {
     item.addEventListener("dragstart", (event) => {
       event.dataTransfer.setData("text/plain", event.target.id);
@@ -48,8 +50,60 @@ document.addEventListener("DOMContentLoaded", () => {
         const draggableElement = document.getElementById(id);
         
         if (draggableElement) {
+          
             label.appendChild(draggableElement);
+
+            saveTierList();
         }
     });
   });
+
+  // --- FUNÇÕES DE LOCALSTORAGE ---
+
+  function saveTierList() {
+    const estado = {};
+
+    dropzones.forEach(zone => {
+
+      const carrosNaZona = [];
+      const carros = zone.querySelectorAll('.game-image');
+      
+      carros.forEach(carro => {
+        carrosNaZona.push(carro.id);
+      });
+
+      estado[zone.id] = carrosNaZona;
+    });
+
+    localStorage.setItem('minhaTierList', JSON.stringify(estado));
+    console.log('Jogo Salvo!', estado);
+  }
+
+  function loadTierList() {
+    const dadosSalvos = localStorage.getItem('minhaTierList');
+
+    if (!dadosSalvos) return;
+
+    const estado = JSON.parse(dadosSalvos);
+
+    Object.keys(estado).forEach(zoneId => {
+      const zona = document.getElementById(zoneId);
+      const idsDosCarros = estado[zoneId];
+
+      idsDosCarros.forEach(carId => {
+        const carro = document.getElementById(carId);
+        if (carro && zona) {
+          zona.appendChild(carro);
+        }
+      });
+    });
+    console.log('Jogo Carregado!');
+  }
 });
+
+function resetarTierList() {
+    
+    localStorage.removeItem('minhaTierList');
+    location.reload();
+  
+  }
