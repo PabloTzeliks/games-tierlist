@@ -1,5 +1,6 @@
+
 document.addEventListener("DOMContentLoaded", () => {
-  const draggableItems = document.querySelectorAll("#image-pool");
+  const draggableItems = document.querySelectorAll(".game-image");
   const dropzones = document.querySelectorAll(".drop-zone, .image-pool");
 
   draggableItems.forEach((item) => {
@@ -11,11 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    item.addEventListener("dragstart", (event) => {
+    item.addEventListener("dragend", (event) => {
       item.classList.remove("dragging");
     });
   });
 
+  // Tratamento final
   dropzones.forEach((label) => {
     
     label.addEventListener("dragenter", (event) => {
